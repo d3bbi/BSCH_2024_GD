@@ -17,6 +17,7 @@ public class CharacterControllerScript : MonoBehaviour
     public float secondaryJumpTime;
 
     public bool secondaryJump;
+    public bool hurt;
 
     public Animator anim;
 
@@ -32,8 +33,7 @@ public class CharacterControllerScript : MonoBehaviour
     {
         anim.SetFloat("speed", Mathf.Abs(myRb.velocity.x)); // sets the speed parameter in the animator to the absolute value of the player's x velocity
         anim.SetBool("jump", !isGrounded && myRb.velocity.y > 0); // sets the jump parameter in the animator to true if the character is not grounded and is moving upwards (jumping)
-        anim.SetBool("fall", !isGrounded && myRb.velocity.y < 0); // sets the fall parameter in the animator to true if the character is not grounded and is moving downwards (falling)
-        
+        anim.SetBool("fall", !isGrounded && myRb.velocity.y < 0); // sets the fall parameter in the animator to true if the character is not grounded and is moving downwards (falling)        
         // animation flip code
         if (Input.GetAxis("Horizontal") > 0.1f) // if the player is moving right
         {
@@ -60,6 +60,11 @@ public class CharacterControllerScript : MonoBehaviour
         {
             myRb.AddForce(new Vector2(0, secondaryJumpForce), ForceMode2D.Force); //while the jump button is held, add a force in the y direction
         }
+
+        if (hurt)
+        {
+            StartCoroutine(Hurt());
+        }
         //END JUMP CODE
     }
 
@@ -78,6 +83,13 @@ public class CharacterControllerScript : MonoBehaviour
         secondaryJump = true;
         yield return new WaitForSeconds(secondaryJumpTime); // wait for a certain amount of time
         secondaryJump = false;
-        //yield return null;
+    }
+
+    IEnumerator Hurt()
+    {
+        anim.SetBool("hurt", true);
+        yield return new WaitForSeconds(1);
+        anim.SetBool("hurt", false);
+        hurt = false;
     }
 }
