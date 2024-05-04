@@ -7,16 +7,18 @@ TagManager:
   - GameManager
   - Start
   - Checkpoint
+  - Enemy
+  - Enemy_collider
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Bomb
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Grid
+  - Explosion
+  - Enemy
   - 
   - 
   - 
