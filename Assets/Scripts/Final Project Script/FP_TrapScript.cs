@@ -6,7 +6,7 @@ public class FP_TrapScript : MonoBehaviour
 {
     public float scoreValue;
     public FP_GameManagerScript gameManager;
-    public FP_Player_Movement player;
+    public FP_Player_Movement player;   
 
 
     // Start is called before the first frame update
