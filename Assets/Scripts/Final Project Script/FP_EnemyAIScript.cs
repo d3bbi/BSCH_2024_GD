@@ -15,60 +15,64 @@ public class FP_EnemyAIScript : MonoBehaviour
     private Transform playerTransform;
     private bool playerDetected = false;
     private bool aggro = false;
-    private bool isDead = false;
+    public bool isDead = false;
     public LayerMask gridLayerMask;
-
-    //get the child collider
-    public Collider2D childCollider;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         anim = GetComponentInChildren<Animator>();
-        childCollider = GetComponentInChildren<Collider2D>();
+    }
+
+    void Update()
+    {
+        if (isDead)
+        {
+            StartCoroutine(Destroy(0.5f));
+        }
     }
 
     void FixedUpdate()
     {
-        if (playerDetected)
+        if (!isDead)
         {
-            // MoveTowardsPlayer();
-        }
-        else if(isDead){
-            return;
-        }
-        else if (!moving)
-        {
-            // Randomly choose between moving left-right or up-down
-            bool moveHorizontal = Random.value < 0.5f;
+            if (playerDetected)
+            {
+                MoveTowardsPlayer();
+            }
+            else if (!moving)
+            {
+                // Randomly choose between moving left-right or up-down
+                bool moveHorizontal = Random.value < 0.5f;
 
-            if (moveHorizontal)
-            {
-                // Choose left or right direction
-                currentDirection = new Vector2(Random.Range(-1f, 1f), 0f).normalized;
-                anim.SetFloat("Horizontal", currentDirection.x);
-                anim.SetFloat("Vertical", 0f);
-            }
-            else
-            {
-                // Choose up or down direction
-                currentDirection = new Vector2(0f, Random.Range(-1f, 1f)).normalized;
-                anim.SetFloat("Horizontal", 0f);
-                anim.SetFloat("Vertical", currentDirection.y);
-            }
+                if (moveHorizontal)
+                {
+                    // Choose left or right direction
+                    currentDirection = new Vector2(Random.Range(-1f, 1f), 0f).normalized;
+                    anim.SetFloat("Horizontal", currentDirection.x);
+                    anim.SetFloat("Vertical", 0f);
+                }
+                else
+                {
+                    // Choose up or down direction
+                    currentDirection = new Vector2(0f, Random.Range(-1f, 1f)).normalized;
+                    anim.SetFloat("Horizontal", 0f);
+                    anim.SetFloat("Vertical", currentDirection.y);
+                }
 
-            //if it move on the left, change the sprite
-            if (currentDirection.x < 0)
-            {
-                anim.transform.localScale = new Vector3(-1, 1, 1);
-            }
-            else
-            {
-                anim.transform.localScale = new Vector3(1, 1, 1);
-            }
+                //if it move on the left, change the sprite
+                if (currentDirection.x < 0)
+                {
+                    anim.transform.localScale = new Vector3(-1, 1, 1);
+                }
+                else
+                {
+                    anim.transform.localScale = new Vector3(1, 1, 1);
+                }
 
-            StartCoroutine(MoveInDirection(currentDirection, Random.Range(1f, 3f))); // Move for 1-3 seconds
+                StartCoroutine(MoveInDirection(currentDirection, Random.Range(1f, 3f))); // Move for 1-3 seconds
+            }
         }
     }
 
@@ -136,12 +140,6 @@ public class FP_EnemyAIScript : MonoBehaviour
             playerDetected = true;
             StartCoroutine(DetectTimer());
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
-        {
-            anim.SetBool("isDead", true);
-            isDead = true;
-            StartCoroutine(Destroy(2.5f)); // Start a coroutine to respawn after a delay
-        }
         
     }
 
@@ -164,6 +162,7 @@ public class FP_EnemyAIScript : MonoBehaviour
 
     IEnumerator Destroy(float delay)
     {
+        anim.SetBool("isDead", true);
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(delay);
         anim.SetBool("isDead", false);

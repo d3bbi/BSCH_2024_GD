@@ -12,7 +12,7 @@ public class BombController : MonoBehaviour
     // number of bombs the player has
     public int numberOfBombs = 1;
     // how many bombs are remaining
-    private int bombsRemaining = 0;
+    public int bombsRemaining = 0;
 
     [Header("Explosion")]
     public Explosion explosionPrefab;
@@ -65,7 +65,7 @@ public class BombController : MonoBehaviour
         Explode(position, new Vector2(-sizeExplotion, 0), explosionRadius);
         Explode(position, new Vector2(sizeExplotion, 0), explosionRadius);
 
-        bombsRemaining++;
+        // bombsRemaining++;
         // remove the object
         Destroy(bombInstance);
     }

@@ -11,6 +11,9 @@ public class FP_Player_Movement : MonoBehaviour
     Vector2 movement;
     public Animator anim;
     public LayerMask explosionLayerMask;
+    public bool isDead = false;
+    public bool killedByEnemy = false;
+    private Collider2D circleCollider;
 
     public FP_GameManagerScript gameManager;
     
@@ -20,33 +23,39 @@ public class FP_Player_Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); // look for a component called Rigidbody2D and assign it to myRb
         anim = GetComponentInChildren<Animator>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<FP_GameManagerScript>();
+        circleCollider = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Input.GetAxisRaw("Horizontal");
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        anim.SetFloat("Horizontal", movement.x);
-        anim.SetFloat("Vertical", movement.y);
-        anim.SetFloat("Speed", movement.sqrMagnitude);
-
-        if (Input.GetAxis("Horizontal") > 0.1f) // if the player is moving right
+        if (!isDead)
         {
-            anim.transform.localScale = new Vector3(1, 1, 1); // flip the player sprite
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+
+            anim.SetFloat("Horizontal", movement.x);
+            anim.SetFloat("Vertical", movement.y);
+            anim.SetFloat("Speed", movement.sqrMagnitude);
+
+            if (Input.GetAxis("Horizontal") > 0.1f) // if the player is moving right
+            {
+                anim.transform.localScale = new Vector3(1, 1, 1); // flip the player sprite
+            }
+            if (Input.GetAxis("Horizontal") < -0.1f) // if the player is moving left
+            {
+                anim.transform.localScale = new Vector3(-1, 1, 1); // flip the player sprite
+            }
         }
-        if (Input.GetAxis("Horizontal") < -0.1f) // if the player is moving left
-        {
-            anim.transform.localScale = new Vector3(-1, 1, 1); // flip the player sprite
-        }
-        
-        // if k is pressed
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Debug.Log("K key was pressed");
-
+        else {
+            circleCollider.isTrigger = true;
+            movement.x = 0;
+            movement.y = 0;
+            anim.SetFloat("Speed", 0);
+            if (killedByEnemy)
+            {
+                StartCoroutine(RespawnAfterDelay(2f)); // Start a coroutine to respawn after a delay
+            }
         }
 
     }
@@ -57,21 +66,24 @@ public class FP_Player_Movement : MonoBehaviour
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
         {
-            anim.SetBool("isDead", true);
-            StartCoroutine(RespawnAfterDelay(2.5f)); // Start a coroutine to respawn after a delay
+            isDead = true;
+            StartCoroutine(RespawnAfterDelay(2f)); // Start a coroutine to respawn after a delay
         }
-
     }
 
     IEnumerator RespawnAfterDelay(float delay)
     {
+        anim.SetBool("isDead", true);
         yield return new WaitForSeconds(delay);
         anim.SetBool("isDead", false);
+        isDead = false;
         yield return new WaitForSeconds(0.1f);
+        circleCollider.isTrigger = false;
         gameManager.Respawn();
     }
 

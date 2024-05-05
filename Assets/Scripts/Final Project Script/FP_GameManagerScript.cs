@@ -18,6 +18,7 @@ public class FP_GameManagerScript : MonoBehaviour
     void Start()
     {
         spawnPoint = GameObject.FindGameObjectWithTag("Start").transform; // find the spawn point
+        
     }
 
     // This function will be called from other script as it is void
@@ -28,6 +29,6 @@ public class FP_GameManagerScript : MonoBehaviour
 
     public void Respawn()
     {
-        GameObject.FindGameObjectWithTag("Player").transform.position = spawnPoint.position;
+        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(spawnPoint.position.x, spawnPoint.position.y -3f, 0);
     }
 }
