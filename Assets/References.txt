@@ -1,0 +1,38 @@
+References
+
+== Asset packs ==
+
+Cute_Fantasy_Free
+https://kenmi-art.itch.io/cute-fantasy-rpg
+
+mystic_woods_free_2.1
+https://game-endeavor.itch.io/mystic-woods
+
+Pixel Farm_Assets
+https://hellorumin.itch.io/pixel-farm-asset-pack
+
+Animated Pixel Coins
+https://totuslotus.itch.io/pixel-coins
+
+== Video helper ==
+
+TOP DOWN MOVEMENT in Unity!
+https://www.youtube.com/watch?v=whzomFgjT50
+
+2D Top Down Pixel Art RPG Game Dev in Unity 2022 ~ Crash Course Tutorial for Beginners
+https://www.youtube.com/watch?v=7iYWpzL9GkM&t=2174s
+
+5 Minute DIALOGUE SYSTEM in UNITY Tutorial
+https://www.youtube.com/watch?v=8oTYabhj248
+
+How to make Bomberman in Unity (Complete Tutorial) 💣💥
+https://www.youtube.com/watch?v=8agb6x5RpOI
+
+Unity add icons into a String or Text | How to use Sprite Asset in Text Mesh Pro
+https://www.youtube.com/watch?v=071Rzqz5ByM
+
+== Documentation ==
+
+2D game development
+https://docs.unity3d.com/Manual/Unity2D.html
+

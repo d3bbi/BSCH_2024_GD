@@ -128,8 +128,11 @@ public class EnemyAIScript : MonoBehaviour
             playerDetected = false;
             if (aggro == true)
             {
-                StopCoroutine("AggroTimer");
-                StartCoroutine("AggroTimer");
+                if (gameObject.activeSelf)
+                {
+                    StopCoroutine("AggroTimer");
+                    StartCoroutine("AggroTimer");
+                }
             }
         }
     }

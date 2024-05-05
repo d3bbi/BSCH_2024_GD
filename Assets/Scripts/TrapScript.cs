@@ -26,7 +26,7 @@ public class TrapScript : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            gameManager.AddScore(scoreValue);
+            gameManager.AddHealth(scoreValue);
             player.hurt = true;
         }
     }

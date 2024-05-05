@@ -30,4 +30,9 @@ public class GameManagerScript : MonoBehaviour
     {
         score += scoreToAdd;
     }
+
+    public void AddHealth(float healthToAdd)
+    {
+        health += healthToAdd;
+    }
 }
