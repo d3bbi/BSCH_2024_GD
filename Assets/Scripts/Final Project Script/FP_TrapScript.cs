@@ -7,7 +7,6 @@ public class FP_TrapScript : MonoBehaviour
     public float scoreValue;
     public FP_GameManagerScript gameManager;
     public FP_Player_Movement player;
-    public FP_EnemyAIScript enemy;
 
 
     // Start is called before the first frame update
@@ -15,7 +14,6 @@ public class FP_TrapScript : MonoBehaviour
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<FP_GameManagerScript>(); // find the game manager and get the script
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<FP_Player_Movement>(); // find the player and get the script
-        enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<FP_EnemyAIScript>();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -27,9 +25,5 @@ public class FP_TrapScript : MonoBehaviour
             player.killedByEnemy = true;
         }
 
-        if (col.gameObject.layer == LayerMask.NameToLayer("Explosion"))
-        {
-            enemy.isDead = true;
-        }
     }
 }

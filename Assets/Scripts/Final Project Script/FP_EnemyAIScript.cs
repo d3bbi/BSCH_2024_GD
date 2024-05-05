@@ -140,6 +140,11 @@ public class FP_EnemyAIScript : MonoBehaviour
             playerDetected = true;
             StartCoroutine(DetectTimer());
         }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
+        {
+            isDead = true;
+        }
         
     }
 
