@@ -1,4 +1,4 @@
-# Griffith College - BSCH Computer Science
+## Griffith College - BScH Computer Science
 ## Module: Game Development
 ### Student: Deborah Rimei (Student ID: 3015579)
 
@@ -16,28 +16,28 @@
 ---
 
 ### Week 1: Physics Playground
-- Description: Introduction to Unity physics components and environment setup.
+-  Introduction to Unity physics components and environment setup.
   
 ### Week 2: 2D Player Controller
-- Description: Implementation of basic player movement and input controls in a 2D environment.
+-  Implementation of basic player movement and input controls in a 2D environment.
 
 ### Week 3: Tilemap Level & Player Animation
-- Description: Creation of a tilemap level, addition of player movement animation, and integration of platform effector 2D.
+-  Creation of a tilemap level, addition of player movement animation, and integration of platform effector 2D.
 
 ### Week 4: GameManager & Checkpoint System
-- Description: Development of a GameManager, implementation of a checkpoint and respawn system, inclusion of traps, and basic UI setup. Updated player animations for jumping and falling.
+-  Development of a GameManager, implementation of a checkpoint and respawn system, inclusion of traps, and basic UI setup. Updated player animations for jumping and falling.
 
 ### Week 5: Simple Enemy AI
-- Description: Introduction of a simple enemy with basic AI and state management. Implementation of enemy movement towards the player's direction.
+-  Introduction of a simple enemy with basic AI and state management. Implementation of enemy movement towards the player's direction.
 
 ### Week 6: 3D Level & Navmesh Setup
-- Description: Creation of a 3D level using Probuilder and setting up Navmesh for enemy chasing. Implementation of mouse-click movement for the player.
+-  Creation of a 3D level using Probuilder and setting up Navmesh for enemy chasing. Implementation of mouse-click movement for the player.
 
 ### Week 7: 3D Animations & Enemy Patrol
-- Description: Setup of animations for the 3D player and enemy characters. Introduction of enemy patrol behavior when not in pursuit of the player.
+-  Setup of animations for the 3D player and enemy characters. Introduction of enemy patrol behavior when not in pursuit of the player.
 
 ### Week 8: Shader Creation & Bonus Content
-- Description: Creation of a simple shader using Shader Graph. Bonus points awarded for creating a simple sequence/cutscene using Timeline, along with post-processing effects in the scene.
+-  Creation of a simple shader using Shader Graph. Bonus points awarded for creating a simple sequence/cutscene using Timeline, along with post-processing effects in the scene.
 
 ### Final Project
-- Description: Development of a 2D game where the player, a farmer, navigates through a maze to find their cow. The player can utilize bombs to defeat enemies and clear obstacles, while also collecting money for medication expenses.
+-  Development of a 2D game where the player, a farmer, navigates through a maze to find their cow. The player can utilize bombs to defeat enemies and clear obstacles, while also collecting money for medication expenses.
