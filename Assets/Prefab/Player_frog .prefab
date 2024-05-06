@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c38b72f9b954bb41995dbdc9e136704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 100
-  acceleration: 50
+  maxSpeed: 60
+  acceleration: 25
   myRb: {fileID: 8484445608555871558}
   jumpForce: 20
   isGrounded: 1
