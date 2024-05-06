@@ -9,18 +9,11 @@ public class CowTriggered : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            for (int i = 0; i < 10; i++)
-            {
-                StartCoroutine(InstantiateHeart(transform.position, transform.rotation));
-            }
+            Vector2 position = transform.position;
+            position.x -= 0.41f;
+            position.y += 1.13f;
+            Instantiate(heart, position, Quaternion.identity);
         }
     }
 
-    IEnumerator InstantiateHeart(Vector2 position, Quaternion rotation)
-    {
-        yield return new WaitForSeconds(0.1f);
-        position.x += Random.Range(-1f, 14f);
-        position.y += Random.Range(-1f, 14f);
-        Instantiate(heart, position, rotation);
-    }
 }
